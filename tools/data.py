@@ -1,5 +1,5 @@
 from os.path import join
-
+from re import fullmatch
 
 def read_message_file(dir_path:str) -> str:
     '''read message.txt and return the content'''
@@ -26,3 +26,12 @@ def read_numbers_file(dir_path:str) -> list[str]:
         return
 
     return numbers
+
+
+def verify_numbers(numbers_list:list[str]) -> list[str]:
+    if numbers_list is None:
+        return
+    cleaned_numbers_list = map(lambda number: number.replace(' ', '').replace('\n', ''), numbers_list)
+    filtered_numbers = filter(lambda number: True if fullmatch('^(\+98|0)?9\d{9}$', number) else False, cleaned_numbers_list)
+    approved_numbers = list(map(lambda number: '+98' + number if number.startswith('9') else number.replace('0', '+98', 1), filtered_numbers))
+    return approved_numbers
