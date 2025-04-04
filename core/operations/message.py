@@ -1,0 +1,3 @@
+from .operation import BaseOperation
+
+class MessageMixin(BaseOperation): ...
