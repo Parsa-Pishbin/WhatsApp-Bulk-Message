@@ -15,3 +15,12 @@ class ActionMixin(BaseOperation):
         
         return True
     
+    def send_by_enter(self):
+        try:
+            text_input = self.browser.find_element(By.XPATH, self.configurations['text_input'])
+        
+            text_input.click()
+            text_input.send_keys(Keys.RETURN)
+        except (NoSuchElementException, ElementNotInteractableException) as exception:
+            print(exception)
+            return False
