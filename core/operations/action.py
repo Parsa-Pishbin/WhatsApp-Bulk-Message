@@ -24,3 +24,7 @@ class ActionMixin(BaseOperation):
         except (NoSuchElementException, ElementNotInteractableException) as exception:
             print(exception)
             return False
+
+    def go_to_user_by_phone(self, phone_number):
+        self.browser.get('https://web.whatsapp.com/send?phone=' + phone_number)
+    
