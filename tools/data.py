@@ -14,3 +14,15 @@ def read_message_file(dir_path:str) -> str:
     
     if message:
         return message
+
+
+def read_numbers_file(dir_path:str) -> list[str]:
+    numbers_file = join(dir_path, 'numbers.txt')
+    try:
+        with open(numbers_file, encoding="utf8") as file:
+            numbers = file.readlines()
+    except FileNotFoundError as exception:
+        print(exception)
+        return
+
+    return numbers
