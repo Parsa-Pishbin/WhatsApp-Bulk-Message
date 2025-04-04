@@ -1,0 +1,24 @@
+from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from os import path
+
+from . import configs
+
+
+class WhatsAppBot:
+    def __init__(self, BASE_DIR, headless=False):
+        '''
+        WhatsAppBot is a agent between us and whatsapp web
+        '''
+        
+        config_path = path.join(BASE_DIR, 'core\core_config')
+        self.configurations = configs.read(config_path)
+        
+        service = Service(executable_path=self.configurations['web_driver_path'])
+        options = Options()
+        if headless:
+            options.add_argument('--headless')
+            options.add_argument('--disable-gpu')
+
+        self.browser = Chrome(service=service, options=options)
