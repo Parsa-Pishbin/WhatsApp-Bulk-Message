@@ -1,0 +1,11 @@
+[GLOBAL]
+extra_delay = 0
+activity_invisible = False
+save_log = True
+save_exceptions = True
+
+[PATH]
+numbers_file_path = numbers.txt
+message_file_path = message.txt
+log_file_path = log.log
+exception_file_path = exceptions.log
