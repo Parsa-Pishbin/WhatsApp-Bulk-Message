@@ -8,18 +8,18 @@ from .operations import action, message, data
 
 
 class WhatsAppBot(action.ActionMixin, message.MessageMixin, data.DataMixin):
-    def __init__(self, BASE_DIR, extra_delay=0, headless=False):
+    def __init__(self, BASE_DIR, general_config):
         '''
         WhatsAppBot is a agent between us and whatsapp web
         '''
         
         config_path = path.join(BASE_DIR, 'core\core_config')
         self.configurations = configs.read(config_path)
-        self.extra_delay = extra_delay
+        self.extra_delay = int(general_config['extra_delay'])
 
         service = Service(executable_path=self.configurations['web_driver_path'])
         options = Options()
-        if headless:
+        if general_config['activity_invisible'] == 'True':
             options.add_argument('--headless')
             options.add_argument('--disable-gpu')
 
