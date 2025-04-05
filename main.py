@@ -21,6 +21,7 @@ if not NUMBERS:
 # send data to core
 
 wa_bot = WhatsAppBot(BASE_DIR)
+wa_bot.login()
 
 for number in NUMBERS:
     wa_bot.go_to_user_by_phone(number)
