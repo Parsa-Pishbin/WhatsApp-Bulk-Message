@@ -4,9 +4,10 @@ from selenium.webdriver.chrome.options import Options
 from os import path
 
 from . import configs
+from .operations import action, message, data
 
 
-class WhatsAppBot:
+class WhatsAppBot(action.ActionMixin, message.MessageMixin, data.DataMixin):
     def __init__(self, BASE_DIR, headless=False):
         '''
         WhatsAppBot is a agent between us and whatsapp web
