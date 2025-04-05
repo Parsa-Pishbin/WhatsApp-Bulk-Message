@@ -1,7 +1,9 @@
 from os import getcwd
+from os.path import join as join_path
 
 from core.core import WhatsAppBot
 from tools.data import read_message_file, read_numbers_file, verify_numbers
+from core import configs
 
 # import read_config
 
@@ -17,10 +19,14 @@ if not NUMBERS:
     print('numbers not foun')
     exit()
     
-# read config
-# send data to core
+general_configs = configs.read(join_path(BASE_DIR, 'general_config'))
 
-wa_bot = WhatsAppBot(BASE_DIR)
+wa_bot = WhatsAppBot(
+    BASE_DIR,
+    extra_delay = int(general_configs['extra_delay']),
+    headless = True if general_configs['activity_invisible'] == 'True' else False
+    )
+
 wa_bot.login()
 
 for number in NUMBERS:
