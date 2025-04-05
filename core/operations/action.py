@@ -26,6 +26,7 @@ class ActionMixin(BaseOperation):
         except (NoSuchElementException, ElementNotInteractableException) as exception:
             print(exception)
             return False
+        return True
 
     def go_to_user_by_phone(self, phone_number):
         self.browser.get(self.configurations['user_search_url'] + phone_number)
