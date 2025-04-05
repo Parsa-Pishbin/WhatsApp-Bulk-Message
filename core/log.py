@@ -6,7 +6,7 @@ class LogManager:
         self.log_text = '{}       {}       {}       ' + str(bot) + '\n'
 
     def save(self, number:str, status:bool):
-        time = datetime.now()
+        time = datetime.now().strftime('%Y-%m-%d  %H:%M')
         status = 'Sent' if status else 'X   '
 
         with open(self.log_file_path, 'a') as log_file:
