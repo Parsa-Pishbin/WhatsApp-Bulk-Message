@@ -1,3 +1,4 @@
+from time import sleep
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException, ElementClickInterceptedException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -27,4 +28,16 @@ class ActionMixin(BaseOperation):
 
     def go_to_user_by_phone(self, phone_number):
         self.browser.get('https://web.whatsapp.com/send?phone=' + phone_number)
-    
+
+    def wait_for_load(self):
+        while True:
+            try:
+                self.browser.find_element(By.XPATH, self.configurations['load_element'])
+                break
+            except NoSuchElementException:
+                print('wait for load')
+                sleep(0.7)
+        
+        sleep(0.5)
+        print('loaded')
+
