@@ -1,3 +1,4 @@
+from time import sleep
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -5,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from .operation import BaseOperation
 
 class MessageMixin(BaseOperation):
-    def write_text_message(self, message:str):
+    def write_text_message(self, message:str, try_again=True):
         '''
         write text message in input box
         '''
@@ -19,7 +20,12 @@ class MessageMixin(BaseOperation):
                 text_input.send_keys(line)
                 text_input.send_keys(Keys.SHIFT ,Keys.RETURN)
         except (NoSuchElementException, ElementNotInteractableException) as exception:
-            print(exception)
-            return False
+            if try_again:
+                sleep(1)
+                self.write_text_message(message, try_again=False)
+            
+            else:
+                print(exception)
+                return False
         
         return True
