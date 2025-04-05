@@ -8,7 +8,7 @@ from .operation import BaseOperation
 class ActionMixin(BaseOperation):
     def send_by_button(self):
         try:
-            send_button = self.browser.find_element(By.XPATH, self.configurations['send_key'])
+            send_button = self.browser.find_element(By.XPATH, self.configurations['chat_send_message_key'])
             send_button.click()
         except (NoSuchElementException, ElementNotInteractableException, ElementClickInterceptedException) as exception:
             print(exception)
@@ -18,7 +18,7 @@ class ActionMixin(BaseOperation):
     
     def send_by_enter(self):
         try:
-            text_input = self.browser.find_element(By.XPATH, self.configurations['text_input'])
+            text_input = self.browser.find_element(By.XPATH, self.configurations['chat_message_input'])
         
             text_input.click()
             text_input.send_keys(Keys.RETURN)
@@ -28,12 +28,13 @@ class ActionMixin(BaseOperation):
             return False
 
     def go_to_user_by_phone(self, phone_number):
-        self.browser.get('https://web.whatsapp.com/send?phone=' + phone_number)
+        self.browser.get(self.configurations['user_search_url'] + phone_number)
+    
 
     def wait_for_load(self):
         while True:
             try:
-                self.browser.find_element(By.XPATH, self.configurations['load_element'])
+                self.browser.find_element(By.XPATH, self.configurations['is_page_load_by_element'])
                 break
             except NoSuchElementException:
                 print('wait for load')
@@ -43,10 +44,10 @@ class ActionMixin(BaseOperation):
         print('loaded')
 
     def login(self):
-        self.browser.get('https://web.whatsapp.com/')
+        self.browser.get(self.configurations['site_url'])
         
         page = self.browser.page_source
-        while self.configurations['login_element'] in page:
+        while self.configurations['is_login_page_phrase'] in page:
             print('wait for loggin')
             sleep(0.7)
             page = self.browser.page_source
