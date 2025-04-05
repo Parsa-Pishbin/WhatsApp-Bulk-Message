@@ -24,6 +24,7 @@ wa_bot = WhatsAppBot(BASE_DIR)
 
 for number in NUMBERS:
     wa_bot.go_to_user_by_phone(number)
+    wa_bot.wait_for_load()
     wa_bot.write_text_message(MESSAGE)
     wa_bot.send_by_enter()
     
