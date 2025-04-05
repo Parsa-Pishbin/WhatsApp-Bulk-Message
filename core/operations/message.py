@@ -12,7 +12,7 @@ class MessageMixin(BaseOperation):
         '''
 
         try:
-            text_input = self.browser.find_element(By.XPATH, self.configurations['text_input'])
+            text_input = self.browser.find_element(By.XPATH, self.configurations['chat_message_input'])
         
             text_input.click()
             text_input.clear()
