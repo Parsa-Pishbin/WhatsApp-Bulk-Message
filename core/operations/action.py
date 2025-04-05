@@ -41,3 +41,15 @@ class ActionMixin(BaseOperation):
         sleep(0.5)
         print('loaded')
 
+    def login(self):
+        self.browser.get('https://web.whatsapp.com/')
+        
+        page = self.browser.page_source
+        while self.configurations['login_element'] in page:
+            print('wait for loggin')
+            sleep(0.7)
+            page = self.browser.page_source
+        
+        print('logged in')
+        self.wait_for_load()
+
