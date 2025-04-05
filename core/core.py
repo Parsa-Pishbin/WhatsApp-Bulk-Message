@@ -5,6 +5,7 @@ from os import path
 
 from . import configs
 from .operations import action, message, data
+from .log import LogManager
 
 
 class WhatsAppBot(action.ActionMixin, message.MessageMixin, data.DataMixin):
@@ -16,6 +17,7 @@ class WhatsAppBot(action.ActionMixin, message.MessageMixin, data.DataMixin):
         config_path = path.join(BASE_DIR, 'core\core_config')
         self.configurations = configs.read(config_path)
         self.extra_delay = int(general_config['extra_delay'])
+        self.log_manager = LogManager(self.__class__, general_config['log_file_path'])
 
         service = Service(executable_path=self.configurations['web_driver_path'])
         options = Options()
