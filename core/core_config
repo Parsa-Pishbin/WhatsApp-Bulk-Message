@@ -1,0 +1,12 @@
+[XPATH]
+chat_send_message_key = //button[@aria-label="Send"]
+chat_message_input = //div[@class="_ak1r"]//p
+is_page_load_by_element = //div[@title="Chats"]/h1
+is_login_page_phrase = Log into WhatsApp Web
+
+[URL]
+site_url = https://web.whatsapp.com/
+user_search_url = https://web.whatsapp.com/send?phone=
+
+[WEBDRIVER]
+web_driver_path = ###
