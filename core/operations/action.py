@@ -22,6 +22,7 @@ class ActionMixin(BaseOperation):
         
             text_input.click()
             text_input.send_keys(Keys.RETURN)
+            sleep(0.4)
         except (NoSuchElementException, ElementNotInteractableException) as exception:
             print(exception)
             return False
