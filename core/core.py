@@ -1,7 +1,7 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from os import path
+from os.path import join as join_path
 
 from . import configs
 from .operations import action, message, data
@@ -14,7 +14,7 @@ class WhatsAppBot(action.ActionMixin, message.MessageMixin, data.DataMixin):
         WhatsAppBot is a agent between us and whatsapp web
         '''
         
-        config_path = path.join(BASE_DIR, 'core\core_config')
+        config_path = join_path(BASE_DIR, 'core\core_config')
         self.configurations = configs.read(config_path)
         self.extra_delay = int(general_config['extra_delay'])
         self.log_manager = LogManager(self.__class__, general_config['log_file_path'], True)
