@@ -8,8 +8,10 @@ from core import configs
 # import read_config
 
 BASE_DIR = getcwd()
-MESSAGE = read_message_file(BASE_DIR)
-NUMBERS = verify_numbers(read_numbers_file(BASE_DIR))
+general_configs = configs.read(join_path(BASE_DIR, 'general_config'))
+
+MESSAGE = read_message_file(join_path(BASE_DIR, general_configs['message_file_path']))
+NUMBERS = verify_numbers(read_numbers_file(join_path(BASE_DIR, general_configs['numbers_file_path'])))
 
 if not MESSAGE:
     print('message not foun')
@@ -19,7 +21,6 @@ if not NUMBERS:
     print('numbers not foun')
     exit()
     
-general_configs = configs.read(join_path(BASE_DIR, 'general_config'))
 
 wa_bot = WhatsAppBot(
     BASE_DIR,
