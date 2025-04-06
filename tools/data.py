@@ -1,12 +1,10 @@
-from os.path import join
 from re import fullmatch
 
-def read_message_file(dir_path:str) -> str:
+def read_message_file(path:str) -> str:
     '''read message.txt and return the content'''
     
-    message_file = join(dir_path, 'message.txt')
     try:
-        with open(message_file, encoding="utf8") as file:
+        with open(path, encoding="utf8") as file:
             message = file.read()
     except FileNotFoundError as exception:
         print(exception)
@@ -16,10 +14,9 @@ def read_message_file(dir_path:str) -> str:
         return message
 
 
-def read_numbers_file(dir_path:str) -> list[str]:
-    numbers_file = join(dir_path, 'numbers.txt')
+def read_numbers_file(path:str) -> list[str]:
     try:
-        with open(numbers_file, encoding="utf8") as file:
+        with open(path, encoding="utf8") as file:
             numbers = file.readlines()
     except FileNotFoundError as exception:
         print(exception)
