@@ -9,4 +9,4 @@ site_url = https://web.whatsapp.com/
 user_search_url = https://web.whatsapp.com/send?phone=
 
 [WEBDRIVER]
-web_driver_path = ###
+web_driver_path = chromedriver\chromedriver.exe
