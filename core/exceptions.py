@@ -26,3 +26,8 @@ class MessageFileNotFoundError(Exception):
 class NoApprovedNumbersError(Exception):
     def __str__(self):
         return '\n\tThere are no any approved number in numbers file'
+    
+
+class BadLogPathError(Exception):
+    def __str__(self):
+        return '\n\tSet a correct path for log in general_config'
